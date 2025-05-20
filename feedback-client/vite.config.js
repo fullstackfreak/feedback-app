@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": "http://localhost:5000",
-    }
+      "/api": "https://feedback-app-back.vercel.app/",
+    },
     // port:4000
   },
 });
