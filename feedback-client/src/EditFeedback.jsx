@@ -43,7 +43,7 @@ const EditFeedback = ({ but, setGo }) => {
       if (resp.data.success == true) {
         console.log("Feedback Removed Successfully");
         setDeleteMessage(true);
-        toast.success("Feedback Deleted Successfully");
+        // toast.success("Feedback Deleted Successfully");
       } else {
         console.log("Feedback Not Found");
       }
@@ -59,7 +59,7 @@ const EditFeedback = ({ but, setGo }) => {
           message: editMessage,
         }
       );
-      toast.success("Feedback updated successfully!");
+      // toast.success("Feedback updated successfully!");
       setEditingId(null);
       fetchFeedback();
     } catch (err) {
@@ -114,7 +114,7 @@ const EditFeedback = ({ but, setGo }) => {
           </div>
         ))}
       </div>
-      <ToastContainer position="top-right" autoClose={3000} />
+      <ToastContainer position="top-right" autoClose={1000} />
     </>
   );
 };
