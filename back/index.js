@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(
   cors({
-    origin: "https://feedback-app-back.vercel.app/",
+    origin: "https://feedback-app-eight-iota.vercel.app/",
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
