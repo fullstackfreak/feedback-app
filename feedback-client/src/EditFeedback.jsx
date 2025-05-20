@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const EditFeedback = ({ but, setGo }) => {
   const [feedbackList, setFeedbackList] = useState([]);
@@ -10,7 +11,7 @@ const EditFeedback = ({ but, setGo }) => {
   const fetchFeedback = async () => {
     try {
       const res = await axios.get(
-        "https://feedback-app-back.vercel.app/api/feedback/all"
+        "https://feedback-app-backtwo.vercel.app/api/feedback/all"
       );
       setFeedbackList(res.data);
       setDeleteMessage(false);
@@ -36,7 +37,7 @@ const EditFeedback = ({ but, setGo }) => {
   const deleteFeedback = async (id) => {
     try {
       const resp = await axios.delete(
-        `https://feedback-app-back.vercel.app/api/feedback/delete/${id}`
+        `https://feedback-app-backtwo.vercel.app/api/feedback/delete/${id}`
       );
 
       if (resp.data.success == true) {
@@ -52,7 +53,7 @@ const EditFeedback = ({ but, setGo }) => {
   const saveEdit = async () => {
     try {
       await axios.put(
-        `https://feedback-app-back.vercel.app/api/feedback/update/${editingId}`,
+        `https://feedback-app-backtwo.vercel.app/api/feedback/update/${editingId}`,
         {
           message: editMessage,
         }
@@ -67,47 +68,53 @@ const EditFeedback = ({ but, setGo }) => {
   };
 
   return (
-    <div className="container mt-4">
-      <h2>Feedback List</h2>
-      {feedbackList.map((f) => (
-        <div key={f._id} className="card p-3 mb-3">
-          <h4>
-            {f.name} {f.rating}/5
-          </h4>
-          <p>
-            <strong>Message:</strong> {f.message}
-          </p>
-          <button
-            className="btn btn-sm btn-primary me-2"
-            onClick={() => startEdit(f)}
-          >
-            Edit
-          </button>
-          <button onClick={() => deleteFeedback(f._id)}>Delete</button>
+    <>
+      <div className="container mt-4">
+        <h2>Feedback List</h2>
+        {feedbackList.map((f) => (
+          <div key={f._id} className="card p-3 mb-3">
+            <h4>
+              {f.name} {f.rating}/5
+            </h4>
+            <p>
+              <strong>Message:</strong> {f.message}
+            </p>
+            <button
+              className="btn btn-sm btn-primary me-2"
+              onClick={() => startEdit(f)}
+            >
+              Edit
+            </button>
+            <button onClick={() => deleteFeedback(f._id)}>Delete</button>
 
-          {/* Show edit form below the item */}
-          {editingId === f._id && (
-            <div className="mt-3">
-              <input
-                type="text"
-                className="form-control mb-2"
-                value={editMessage}
-                onChange={(e) => setEditMessage(e.target.value)}
-              />
-              <button
-                className="btn btn-success btn-sm me-2"
-                onClick={saveEdit}
-              >
-                Save
-              </button>
-              <button className="btn btn-secondary btn-sm" onClick={cancelEdit}>
-                Cancel
-              </button>
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
+            {/* Show edit form below the item */}
+            {editingId === f._id && (
+              <div className="mt-3">
+                <input
+                  type="text"
+                  className="form-control mb-2"
+                  value={editMessage}
+                  onChange={(e) => setEditMessage(e.target.value)}
+                />
+                <button
+                  className="btn btn-success btn-sm me-2"
+                  onClick={saveEdit}
+                >
+                  Save
+                </button>
+                <button
+                  className="btn btn-secondary btn-sm"
+                  onClick={cancelEdit}
+                >
+                  Cancel
+                </button>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <ToastContainer position="top-right" autoClose={3000} />
+    </>
   );
 };
 
