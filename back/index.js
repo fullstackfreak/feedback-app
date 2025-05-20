@@ -1,13 +1,13 @@
-const express = require('express')
+const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const mongoose = require("mongoose");
-const app = express()
+const app = express();
 
 const PORT = process.env.PORT || 5000;
 app.use(
   cors({
-    origin: "feedback-app-eight-iota.vercel.app",
+    origin: "https://feedback-app-back.vercel.app/",
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
@@ -22,11 +22,10 @@ mongoose
 
 app.use("/api/feedback", feedbackRoute);
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`)
-})
+  console.log(`Example app listening on port ${PORT}`);
+});
