@@ -27,7 +27,10 @@ const App = () => {
         return;
       }
 
-      await axios.post("/api/feedback/submit", form);
+      await axios.post(
+        "https://feedback-app-back.vercel.app/api/feedback/submit",
+        form
+      );
       toast.success("Feedback Submitted Successfully");
       setError("");
       setGo(true);

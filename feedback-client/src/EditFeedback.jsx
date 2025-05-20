@@ -9,7 +9,9 @@ const EditFeedback = ({ but, setGo }) => {
 
   const fetchFeedback = async () => {
     try {
-      const res = await axios.get("/api/feedback/all");
+      const res = await axios.get(
+        "https://feedback-app-back.vercel.app/api/feedback/all"
+      );
       setFeedbackList(res.data);
       setDeleteMessage(false);
       setGo(false);
@@ -33,7 +35,9 @@ const EditFeedback = ({ but, setGo }) => {
   };
   const deleteFeedback = async (id) => {
     try {
-      const resp = await axios.delete(`/api/feedback/delete/${id}`);
+      const resp = await axios.delete(
+        `https://feedback-app-back.vercel.app/api/feedback/delete/${id}`
+      );
 
       if (resp.data.success == true) {
         console.log("Feedback Removed Successfully");
@@ -47,9 +51,12 @@ const EditFeedback = ({ but, setGo }) => {
   };
   const saveEdit = async () => {
     try {
-      await axios.put(`/api/feedback/update/${editingId}`, {
-        message: editMessage,
-      });
+      await axios.put(
+        `https://feedback-app-back.vercel.app/api/feedback/update/${editingId}`,
+        {
+          message: editMessage,
+        }
+      );
       alert("Feedback updated successfully!");
       setEditingId(null);
       fetchFeedback();

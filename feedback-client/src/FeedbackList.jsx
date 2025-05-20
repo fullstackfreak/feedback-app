@@ -4,11 +4,9 @@ import axios from "axios";
 import EditFeedback from "./EditFeedback";
 
 const FeedbackList = () => {
-
-
   useEffect(() => {
     axios
-      .get("/api/feedback/all")
+      .get("https://feedback-app-back.vercel.app/api/feedback/all")
       .then((res) => setFeedbacks(res.data))
       .catch((err) => console.log(err));
   }, []);
