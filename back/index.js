@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const feedbackRoute = require("./routes/feedbackRoute");
 const app = express();
 
+const MONGO_URI = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 5000;
 app.use(
   cors({
@@ -12,7 +13,6 @@ app.use(
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
-const MONGO_URI = process.env.MONGODB_URI;
 app.use(express.json());
 if (!MONGO_URI) {
   throw new Error("Please define the MONGODB_URI environment variable");
@@ -24,7 +24,7 @@ mongoose
   })
   .catch((err) => console.error(err));
 
-app.use("/api/feedback", feedbackRoute);
+//app.use("/api/feedback", feedbackRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
