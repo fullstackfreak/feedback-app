@@ -12,8 +12,11 @@ app.use(
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
+const MONGO_URI = process.env.MONGODB_URI;
 app.use(express.json());
-
+if (!MONGO_URI) {
+  throw new Error("Please define the MONGODB_URI environment variable");
+}
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
