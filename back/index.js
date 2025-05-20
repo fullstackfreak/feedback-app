@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const feedbackRoute = require("./routes/feedbackRoute");
 const app = express();
 
-const MONGO_URI = process.env.MONGODB_URI;
+const MONGO_URI = process.env.MONGO_URI;
 const PORT = process.env.PORT || 5000;
 app.use(
   cors({
