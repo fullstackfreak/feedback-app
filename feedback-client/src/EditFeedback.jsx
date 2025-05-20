@@ -43,6 +43,7 @@ const EditFeedback = ({ but, setGo }) => {
       if (resp.data.success == true) {
         console.log("Feedback Removed Successfully");
         setDeleteMessage(true);
+        toast.success("Feedback Deleted Successfully");
       } else {
         console.log("Feedback Not Found");
       }
@@ -58,7 +59,7 @@ const EditFeedback = ({ but, setGo }) => {
           message: editMessage,
         }
       );
-      alert("Feedback updated successfully!");
+      toast.success("Feedback updated successfully!");
       setEditingId(null);
       fetchFeedback();
     } catch (err) {
