@@ -9,7 +9,7 @@ const MONGO_URI = process.env.MONGO_URI;
 const PORT = process.env.PORT || 5000;
 app.use(
   cors({
-    origin: "https://feedback-app-front.vercel.app/",
+    origin: "https://feedback-app-front.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
